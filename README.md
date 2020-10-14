@@ -7,7 +7,7 @@ A cloned game of agar.io
 * You're a blob that represents a bacteria and the world is a petri dish
 * Move with mouse
 * Eat food and other bacteria that are smaller than you. Get bigger but slower.
-* Can split into smaller smaller divisions to escape from impeding emulsification or to eat another bacteria. Reduction in size means faster movement.
+* Can split into smaller divisions to escape from impeding emulsification or to eat another bacteria. Reduction in size means faster movement.
 * Points system based
 
 ## Wireframes:
