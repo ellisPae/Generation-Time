@@ -11,7 +11,7 @@ A cloned game of agar.io
 * Points system based
 
 ## Wireframes:
-https://wireframe.cc/1V8oUn
+https://wireframe.cc/6PXuWn
 
 ## Architecture and Technology
 * JavaScript
