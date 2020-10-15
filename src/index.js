@@ -1,104 +1,114 @@
-import "./styles/index.scss";
-import "./images/yoda-stitch.jpg";
-import canvasExample from "./scripts/canvas";
-import Square from "./scripts/square";
-import { DOMExample } from "./scripts/DOMExample";
-const currentStateObj = {
-  currentExample: null,
-  currentEventListeners: [],
-};
+// import './styles/index.css';
+// import Blob from './mainPlayer';
+// import p5 from 'p5';
 
-document.querySelector("#canvas-demo").addEventListener("click", startCanvas);
-document.querySelector("#DOM-demo").addEventListener("click", startDOM);
 
-function startDOM() {
-  unregisterEventListeners();
-  clearDemo();
-  currentStateObj.currentExample = "DOMDEMO";
-  DOMExample();
-}
 
-function startCanvas() {
-  clearDemo();
-  unregisterEventListeners();
-  currentStateObj.currentExample = "CANVASDEMO";
-  const canvas = new canvasExample();
-  canvas.createCanvas();
-  const squares = [new Square(canvas.ctx, canvas.coords, canvas.fillColor)];
 
-  let animating = true;
+// // let mainPlayer;
 
-  const animation = () => {
-    canvas.clearCanvas();
-    if (animating) squares.forEach((sq) => sq.updateSquare(canvas.fillColor));
-    squares.forEach((sq) => sq.drawSquare());
-    window.requestAnimationFrame(animation);
-    squares.forEach((sq) => {
-      if (sq.coords[0] + sq.coords[2] > window.innerWidth)
-        sq.reverseAnimation();
-      if (sq.coords[0] < 0) sq.reverseAnimation();
-    });
-  };
+// let blob;
 
-  window.requestAnimationFrame(animation);
+// let blobs = [];
 
-  window.addEventListener("keydown", handleKeyDown);
-  currentStateObj.currentEventListeners.push([
-    "window",
-    "keydown",
-    handleKeyDown,
-  ]);
+// const setup = () => {
+//   createCanvas(600, 600);
+//   blob = new Blob(width/2, height/2, 64);
+//   for (let i = 0; i < 20; i++) {
+//     blobs[i] = new Blob(random(width), random(height), 16)
+//   }
+// }
 
-  window.addEventListener("mousedown", handleMouseDown);
-  currentStateObj.currentEventListeners.push([
-    "window",
-    "mousedown",
-    handleMouseDown,
-  ]);
+// const draw = () => {
+//   background(220);
+//   blob.show();
+//   for (let i = 0; i < blobs.length; i++) {
+//     blobs[i].show();
+//   }
+// }
 
-  function handleKeyDown(event) {
-    if (event.which === 32) {
-      event.preventDefault();
-      squares.forEach((sq) => sq.reverseAnimation());
-      canvas.setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
-    }
-  }
 
-  function handleMouseDown(event) {
-    event.preventDefault();
-    squares.push(
-      new Square(
-        canvas.ctx,
-        canvas.coords.map((co) => co + 25),
-        canvas.fillColor
-      )
-    );
-    // animating = !animating;
-  }
-}
+// setup();
+// draw();
 
-function unregisterEventListeners() {
-  while (currentStateObj.currentEventListeners.length) {
-    let [
-      selector,
-      event,
-      handler,
-    ] = currentStateObj.currentEventListeners.pop();
-    if (selector === "window") {
-      window.removeEventListener(event, handler);
-      console.log(handler);
-    } else {
-      document.querySelector(selector).removeEventListener(event, handler);
-    }
-  }
-}
 
-function clearDemo() {
-  if (currentStateObj.currentExample === "CANVASDEMO")
-    document.body.removeChild(document.querySelector("canvas"));
-  if (currentStateObj.currentExample === "DOMDEMO") {
-    [...document.querySelectorAll(".card")].forEach((elem) =>
-      document.body.removeChild(elem)
-    );
-  }
-}
+
+
+// let canvas = document.getElementById('canvas');
+// let ctx = canvas.getContext("2d");
+
+
+// function getRandomColor() {
+//   let letters = '0123456789ABCDEF';
+//   var color = '#';
+//   for (var i = 0; i < 6; i++) {
+//     color += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return color;
+// }
+
+// const createFood = () => {
+//   for (let i = 0 ; i < 100; i++) {
+
+//     let xPos = Math.random() * canvas.width;
+//     var yPos = Math.random() * canvas.height;
+//     ctx.moveTo(xPos, yPos);
+//     ctx.arc(xPos,yPos, 7, 0, Math.PI * 2);
+//     ctx.fillStyle = getRandomColor();
+//     ctx.fill();
+//   }
+  
+// }
+
+// createFood();
+
+// let food = [];
+
+// const createFood = (radius, num, arr) => {
+//   for (let i = 0; i < num; i++) {
+//     let xPos = Math.floor(Math.random() * canvas.width)
+//     let yPos = Math.floor(Math.random() * canvas.height)
+    
+//     let color = getRandomColor();
+    
+//     let food = {
+//       x: xPos,
+//       y: yPos,
+//       r: radius,
+//       color: color
+//     }
+//     arr.push(food);
+//   }
+// }
+
+// createFood(5, 150, food);
+
+
+// const populateFood = (ctx, foodArr) => {
+//   for (let food of foodArr) {
+//     ctx.beginPath();
+//     ctx.arc(food.x, food.y, food.r, 0, 2 * Math.PI, food.color);
+//     ctx.fillStyle = food.color;
+//     ctx.fill();
+//   }
+// }
+
+// populateFood(ctx, food);
+
+
+
+// function setRandomColor() {
+//   $("#colorpad").css("background-color", getRandomColor());
+// }
+
+
+// const createBacteria = (ctx, bactArr) => {
+//   for (const circle of circlesArr) {
+//     ctx.beginPath();
+//     ctx.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI,                 
+//     circle.color);
+//     ctx.fillStyle = circle.color;
+//     ctx.fill();
+//   }
+// }
+
