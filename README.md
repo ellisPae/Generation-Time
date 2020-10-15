@@ -1,4 +1,4 @@
-# demoralized
+# Generation Time
 
 ## Background and Overview
 A cloned game of agar.io
