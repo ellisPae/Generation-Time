@@ -1,4 +1,4 @@
-// import './styles/index.css';
+import './styles/index.css';
 // import Blob from './mainPlayer';
 // import p5 from 'p5';
 
