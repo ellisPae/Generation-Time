@@ -47,7 +47,6 @@ function Blob(x, y, r) {
   
   }
     
-  
     this.eats = function(something) {
       // the sum of 2 radii needs to be greater than the distance between them
       // the eater needs to be at least 1.5x the size of the eaten 
