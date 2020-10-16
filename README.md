@@ -1,7 +1,7 @@
 # Generation Time
 
 ## Background and Overview
-A cloned game of agar.io
+A cloned game of agar.io with a little twist
 
 ## Functionality and MVPs
 * You're a blob that represents a bacteria and the world is a petri dish
