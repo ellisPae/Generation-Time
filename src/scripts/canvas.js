@@ -14,21 +14,28 @@ let randomColor;
 
 
 
-function Blob(x, y, r) {
-  this.pos = createVector(x, y);
-  this.velocity = createVector(0, 0);
-  this.acceleration = createVector(0, 0)
-  this.r = r;
-
-  this.show = function() {
+class Blob {
+  constructor(x, y, r) {
+    this.pos = createVector(x, y);
+    this.velocity = createVector(0, 0);
+    this.acceleration = createVector(0, 0)
+    this.r = r;
+    this.colour = color(random(255), random(255), random(255));
+  }
+  
+  show() {
+    // randomColor = color(random(255), random(255), random(255))
+    // fill(randomColor)
+  
     circle(this.pos.x, this.pos.y, this.r * 2);
     noStroke();
+    fill(this.colour)
   }
 
   //  velocity = change in distance / time
   //  accel = change in velocity / time
 
-  this.move = function() {
+  move() {
     let newVelocity = createVector((mouseX - width/2), (mouseY - height/2));
     newVelocity.setMag(4);
     this.velocity.lerp(newVelocity, 0.3);
@@ -47,7 +54,7 @@ function Blob(x, y, r) {
   
   }
     
-    this.eats = function(something) {
+  eats(something) {
       // the sum of 2 radii needs to be greater than the distance between them
       // the eater needs to be at least 1.5x the size of the eaten 
       // gains size after eating => radius does NOT inc, AREA inc
@@ -59,21 +66,22 @@ function Blob(x, y, r) {
         let combinedSize = ((this.r ** 2) * PI)  + (0.5 * (something.r ** 2) * PI) 
         this.r = sqrt(combinedSize / PI);
         
-        if (this.r >= (1.02 * this.r)) {
-        // debugger
-        let newAcceleration = createVector((mouseX - width/2), (mouseY - height/2));
-        newAcceleration.setMag(1);
-        this.acceleration.lerp(newAcceleration, 0.3);
-        this.velocity.sub(this.acceleration);
-        debugger
-    }
+    //     let thresholdR = 1.05 * this.r
+    //     if (this.r >= thresholdR) {
+        
+    //     let newAcceleration = createVector((mouseX - width/2), (mouseY - height/2));
+    //     newAcceleration.setMag(1);
+    //     this.acceleration.lerp(newAcceleration, 0.3);
+    //     this.velocity.sub(this.acceleration);
+    //     this.eats();
+    // }
 
         if (food.includes(something)) {
           let x = random(-width * 4, width * 4)
           let y = random(-height * 4, height * 4)
           food.push(new Blob(x, y, 10));
         }
-        
+
       return true;
     } else {
       return false;
@@ -85,19 +93,31 @@ function Blob(x, y, r) {
 
 let player;
 let food = [];
+let penicillin = []
+
 
 function setup () {
   const canvas = createCanvas(1200, 900);
   canvas.parent("container");
   player = new Blob(0, 0, 40);
+  // fill(randomColor)
 
-  for (let i = 0; i < 700; i++) {
-    let x = random(-width * 4, width * 4)
-    let y = random(-height * 4, height * 4)
+  for (let i = 0; i < 1000; i++) {
+    let x = random(-width * 4, width * 4);
+    let y = random(-height * 4, height * 4);
+
     food[i] = new Blob(x, y, 10)
   }
-  randomColor = color(random(255), random(255), random(255))
-  fill(randomColor)
+  
+
+
+//   for (let i = 0; i < 70; i++) {
+//     let x = random(-width * 4, width * 4)
+//     let y = random(-height * 4, height * 4)
+//     penicillin[i] = new Blob(x, y, 10)
+//     randomColor = color(random(255), random(255), random(255))
+//     fill(randomColor)
+//   }
 }
 
 function draw() {
@@ -105,7 +125,6 @@ function draw() {
 
   // 1. translate respect to center
   translate(width/2, height/2);
-
 
   // 2. scale the frame accordingly to the size of the player
   // => original size relative to new size
@@ -115,7 +134,6 @@ function draw() {
   // 3. translate respect to player position
   translate(-player.pos.x, -player.pos.y);
   
-
   player.show();
   player.move();
 
