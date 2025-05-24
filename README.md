@@ -18,8 +18,6 @@ https://wireframe.cc/6PXuWn
 * canvas
 
 ## Implementation Timeline
-#### Day 1 - whenever:
-* who knows
 
 ## Bonus Features
-* I won't get that far
+
